@@ -51,27 +51,26 @@ def recomend():
     
     m=m[0]
     m=m.lower()
+    m in df['Title'].unique()
     
-    truval = m in df['Title'].unique()        
-    if truval==True:
-        i=df.loc[df['Title']==m].index[0]
-        print(i)
-        sim[i]
-        lst=list(enumerate(sim[i]))
+    i=df.loc[df['Title']==m].index[0]
+    print(i)
+    sim[i]
+    lst=list(enumerate(sim[i]))
+    
+    lst[:10]
+    lst=sorted(lst,key=lambda x:x[1],reverse=True)
+    lst=lst[1:11]
+
+    m=[]
+    for i in range(len(lst)):
+        a=lst[i][0]
+        m.append(df['Title'][a])
         
-        lst[:10]
-        lst=sorted(lst,key=lambda x:x[1],reverse=True)
-        lst=lst[1:11]
-    
-        m=[]
-        for i in range(len(lst)):
-            a=lst[i][0]
-            m.append(df['Title'][a])
-        output=m
-        return render_template('index.html', recomended_movies='Recomended movies are $ {}'.format(output))
-    if truval==False:
-        return render_template('index.html', recomended_movies='Invalid Movie Name')
-   
+
+    output = m
+
+    return render_template('index.html', recomended_movies='Recomended movies are $ {}'.format(output))
 
 
 if __name__ == "__main__":
