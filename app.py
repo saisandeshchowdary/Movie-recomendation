@@ -18,6 +18,7 @@ def recomend():
     '''
     For rendering results on HTML GUI
     '''
+    print("hey hello everyone")
     m = [str(x) for x in request.form.values()]
     
     
